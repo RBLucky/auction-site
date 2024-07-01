@@ -1,0 +1,27 @@
+{% extends 'auctions/layout.html' %}
+{% block title %} Auction Closed: {{ title }} {% endblock %}
+
+{% block body %}
+<div style="text-align: center;">
+    <h2>Auction Closed: {{ title }}</h2>
+    <img style="height: 300px; width: 300px; max-height: 300px; max-width: 300px; min-width: 300px; min-height: 300px;"
+        src="{{ image }}" alt="{{ description }}">
+    <p><em>{{ description }}</em></p><br>
+
+    <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500" style="margin-right: 25px; padding: 10px;">Winning Bid: ${{ price }}0</span>
+    <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border border-gray-500" style="margin-left: 25px; padding: 10px;">Category: {{ category }}</span>
+
+    <br><br>
+
+    {% if you == closer %}
+        <p style="color: red;"><strong>You</strong> have closed this auction</p>
+    {% else %}
+        <p style="color: red;">"<strong>{{ closer }}</strong>" has closed this auction</p>
+    {% endif %}
+    {% if you == winner %}
+        <p style="color: green;">You have won the auction! Enjoy your new {{ title }}</p>
+    {% else %}
+    <p style="color: green;">"<strong>{{ winner }}</strong>" has won the auction! They now have a new {{ title }}</p>
+    {% endif %}
+</div>
+{% endblock %}
